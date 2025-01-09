@@ -591,5 +591,5 @@ QTextStream & operator<<( QTextStream & str, const std::string & text )
 
 QString formatErrno()
 {
-    return QString( errno );
+    return QString::number( errno );
 }
