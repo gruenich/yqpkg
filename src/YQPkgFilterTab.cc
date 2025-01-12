@@ -626,7 +626,7 @@ YQPkgFilterTab::readSettings()
     QSettings settings;
     settings.beginGroup( "Pages" );
 
-    QStringList pages = settings.value( "OpenPages"   ).toStringList();
+    const QStringList pages = settings.value( "OpenPages" ).toStringList();
     QString current   = settings.value( "CurrentPage" ).toString();
 
     settings.endGroup();
@@ -644,7 +644,7 @@ YQPkgFilterTab::readSettings()
 
         QSignalBlocker sigBlocker( this );
 
-        foreach ( QString id, pages )
+        for ( const QString& id: pages )
         {
             YQPkgFilterPage * page = findPage( id );
 
