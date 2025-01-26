@@ -294,7 +294,7 @@ void YQPkgSelector::createSearchFilterView()
     CHECK_NEW( _searchFilterView );
 
     _filters->addPage( _( "&Search" ), _searchFilterView,
-                       "search", Qt::CTRL + Qt::SHIFT + Qt::Key_S );
+                       "search", Qt::CTRL | Qt::SHIFT | Qt::Key_S );
 }
 
 
@@ -308,7 +308,7 @@ void YQPkgSelector::createPatchFilterView( bool force )
             CHECK_NEW( _patchFilterView );
 
             _filters->addPage( _( "Patc&hes" ), _patchFilterView,
-                               "patches", Qt::CTRL + Qt::SHIFT + Qt::Key_H  );
+                               "patches", Qt::CTRL | Qt::SHIFT | Qt::Key_H  );
         }
     }
 }
@@ -320,7 +320,7 @@ void YQPkgSelector::createUpdatesFilterView()
     CHECK_NEW( _updatesFilterView );
 
     _filters->addPage( _( "&Updates" ), _updatesFilterView,
-                       "updates", Qt::CTRL + Qt::SHIFT + Qt::Key_U );
+                       "updates", Qt::CTRL | Qt::SHIFT | Qt::Key_U );
 }
 
 
@@ -330,7 +330,7 @@ void YQPkgSelector::createRepoFilterView()
     CHECK_NEW( _repoFilterView );
 
     _filters->addPage( _( "&Repositories" ), _repoFilterView,
-                       "repos", Qt::CTRL + Qt::SHIFT + Qt::Key_R );
+                       "repos", Qt::CTRL | Qt::SHIFT | Qt::Key_R );
 
 }
 
@@ -358,7 +358,7 @@ void YQPkgSelector::createPatternsFilterView()
         CHECK_NEW( _patternList );
 
         _filters->addPage( _( "Pa&tterns" ), _patternList,
-                           "patterns", Qt::CTRL + Qt::SHIFT + Qt::Key_T );
+                           "patterns", Qt::CTRL | Qt::SHIFT | Qt::Key_T );
     }
 }
 
@@ -369,7 +369,7 @@ void YQPkgSelector::createPkgClassificationFilterView()
     CHECK_NEW( _pkgClassificationFilterView );
 
     _filters->addPage( _( "Package Classi&fication" ), _pkgClassificationFilterView,
-                       "package_classification", Qt::CTRL + Qt::SHIFT + Qt::Key_F );
+                       "package_classification", Qt::CTRL | Qt::SHIFT | Qt::Key_F );
 }
 
 
@@ -380,7 +380,7 @@ void YQPkgSelector::createLanguagesFilterView()
     _langList->setSizePolicy( QSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored ) ); // hor/vert
 
     _filters->addPage( _( "&Languages" ), _langList,
-                       "languages", Qt::CTRL + Qt::SHIFT + Qt::Key_L );
+                       "languages", Qt::CTRL | Qt::SHIFT | Qt::Key_L );
 }
 
 
@@ -390,7 +390,7 @@ void YQPkgSelector::createStatusFilterView()
     CHECK_NEW( _statusFilterView );
 
     _filters->addPage( _( "Installation Su&mmary" ), _statusFilterView,
-                       "inst_summary", Qt::CTRL + Qt::SHIFT + Qt::Key_M );
+                       "inst_summary", Qt::CTRL | Qt::SHIFT | Qt::Key_M );
 }
 
 
