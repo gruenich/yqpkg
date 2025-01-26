@@ -327,7 +327,7 @@ YQPkgFilterTab::showPage( const QString & internalName )
     if ( page )
         showPage( page );
     else
-        logWarning() << "No page with ID \"" << internalName << "\"" << endl;
+        logWarning() << "No page with ID \"" << internalName << "\"" << Qt::endl;
 }
 
 
@@ -380,7 +380,7 @@ YQPkgFilterTab::reloadCurrentPage()
 
     if ( currentPage )
     {
-        logDebug() << "Reloading page " << currentPage->id << endl;
+        logDebug() << "Reloading page " << currentPage->id << Qt::endl;
         emit currentChanged( currentPage->content );
     }
 }
@@ -541,7 +541,7 @@ YQPkgFilterTab::closePage()
 {
     if ( tabBar()->count() == 1 )
     {
-        logWarning() << "Can't close the last page" << endl;
+        logWarning() << "Can't close the last page" << Qt::endl;
         return;
     }
 
@@ -674,8 +674,8 @@ YQPkgFilterTab::readSettings()
 
     settings.endGroup();
 
-    logInfo() << "Restoring pages " << savedPages << endl;
-    logInfo() << "Current page:   " << currentPageId << endl;
+    logInfo() << "Restoring pages " << savedPages << Qt::endl;
+    logInfo() << "Current page:   " << currentPageId << Qt::endl;
 
     {
         // Prevent an event cascade as pages are added: Each one would cause
@@ -693,7 +693,7 @@ YQPkgFilterTab::readSettings()
             if ( page )
                 showPage( page );
             else
-                logWarning() << "No page with ID \"" << pageId << "\"" << endl;
+                logWarning() << "No page with ID \"" << pageId << "\"" << Qt::endl;
         }
     }
 
@@ -704,7 +704,7 @@ YQPkgFilterTab::readSettings()
         if ( page )
             showPage( page ); // We want this to emit signals to fill the pkg list
         else
-            logWarning() << "Can't restore current page with ID \"" << currentPageId << "\"" << endl;
+            logWarning() << "Can't restore current page with ID \"" << currentPageId << "\"" << Qt::endl;
     }
 }
 
@@ -721,7 +721,7 @@ YQPkgFilterTab::writeSettings()
         if ( page )
         {
             if ( page->id.isEmpty() )
-                logWarning() << "No ID for tab page \"" << page->label << "\"" << endl;
+                logWarning() << "No ID for tab page \"" << page->label << "\"" << Qt::endl;
             else
                 openPages << page->id;
         }

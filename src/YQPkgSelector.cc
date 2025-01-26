@@ -131,7 +131,7 @@ YQPkgSelector::YQPkgSelector( QWidget * parent )
     _blockResolver     = true;
     _showChangesDialog = true;
 
-    logDebug() << "Creating YQPkgSelector..." << endl;
+    logDebug() << "Creating YQPkgSelector..." << Qt::endl;
 
     basicLayout();
     addMenus();         // Only after all widgets are created!
@@ -141,7 +141,7 @@ YQPkgSelector::YQPkgSelector( QWidget * parent )
 
     if ( _filters->tabCount() == 0 )
     {
-        logDebug() << "No page configuration saved, using fallbacks" << endl;
+        logDebug() << "No page configuration saved, using fallbacks" << Qt::endl;
         showFallbackPages();
     }
 
@@ -153,18 +153,18 @@ YQPkgSelector::YQPkgSelector( QWidget * parent )
     _blockResolver = false;
     firstSolverRun();
 
-    logDebug() << "YQPkgSelector init done" << endl;
+    logDebug() << "YQPkgSelector init done" << Qt::endl;
 }
 
 
 YQPkgSelector::~YQPkgSelector()
 {
-    logDebug() << "Destroying YQPkgSelector..." << endl;
+    logDebug() << "Destroying YQPkgSelector..." << Qt::endl;
 
     writeSettings();
     _instance = 0;
 
-    logDebug() << "Destroying YQPkgSelector done." << endl;
+    logDebug() << "Destroying YQPkgSelector done." << Qt::endl;
 }
 
 
@@ -203,7 +203,7 @@ void YQPkgSelector::overrideInitialPage()
         // switch to that filter view and show those packages.  This should
         // happen only very, very rarely.
 
-        logInfo() << "Found installed retracted packages; switching to that view" << endl;
+        logInfo() << "Found installed retracted packages; switching to that view" << Qt::endl;
         _filters->showPage( _pkgClassificationFilterView );
         _pkgClassificationFilterView->showPkgClass( YQPkgClassRetractedInstalled );
 
@@ -1079,7 +1079,7 @@ YQPkgSelector::manualResolvePackageDependencies()
 {
     if ( ! _pkgConflictDialog )
     {
-        logError() << "No package conflict dialog existing" << endl;
+        logError() << "No package conflict dialog existing" << Qt::endl;
         return QDialog::Accepted;
     }
 
@@ -1106,7 +1106,7 @@ YQPkgSelector::hotkeyAddPatchFilterView()
 {
     if ( ! _patchFilterView )
     {
-        logInfo() << "Activating patches filter view" << endl;
+        logInfo() << "Activating patches filter view" << Qt::endl;
 
         createPatchFilterView( true ); // force
         connectPatchFilterView();
@@ -1164,7 +1164,7 @@ YQPkgSelector::connectPatternList()
 void
 YQPkgSelector::reset()
 {
-    logDebug() << "Reset" << endl;
+    logDebug() << "Reset" << Qt::endl;
 
     resetResolver();
     LicenseCache::confirmed()->clear();
@@ -1191,7 +1191,7 @@ YQPkgSelector::reset()
 void
 YQPkgSelector::configRepos()
 {
-    logDebug() << endl;
+    logDebug() << Qt::endl;
 
     notImplemented();
 }
@@ -1228,7 +1228,7 @@ YQPkgSelector::globalUpdatePkg( bool force )
 
     int count = _pkgList->globalSetPkgStatus( S_Update, force,
                                               true ); // countOnly
-    logInfo() << count << " pkgs found for update" << endl;
+    logInfo() << count << " pkgs found for update" << Qt::endl;
 
     if ( count >= GLOBAL_UPDATE_CONFIRMATION_THRESHOLD )
     {
@@ -1334,17 +1334,17 @@ YQPkgSelector::updateSwitchRepoLabels()
 void
 YQPkgSelector::switchToRepo( const QString & link )
 {
-    logDebug() << "link " << link << " clicked on label" << endl;
+    logDebug() << "link " << link << " clicked on label" << Qt::endl;
 
     QUrl url( link );
     if ( url.scheme() == "repoupgradeadd" )
     {
-        logDebug() << "looking for repo " << url.path() << endl;
+        logDebug() << "looking for repo " << url.path() << Qt::endl;
 
         std::string alias( url.path().remove( 0, 1 ).toStdString() );
         zypp::Repository repo( zypp::getZYpp()->pool().reposFind( alias ) );
 
-        logDebug() << repo.name() << endl;
+        logDebug() << repo.name() << Qt::endl;
 
         if ( repo != zypp::Repository::noRepository )
         {
@@ -1363,7 +1363,7 @@ YQPkgSelector::switchToRepo( const QString & link )
             zypp::getZYpp()->resolver()->removeUpgradeRepo( repo );
     }
     else
-        logDebug() << "unknown link operation " << url.scheme() << endl;
+        logDebug() << "unknown link operation " << url.scheme() << Qt::endl;
 
     resolveDependencies();
 }
@@ -1495,7 +1495,7 @@ YQPkgSelector::installSubPkgs( const QString & suffix )
         {
             subPkgs[ name ] = *it;
 
-            logDebug() << "Found subpackage: " << name << endl;
+            logDebug() << "Found subpackage: " << name << Qt::endl;
         }
     }
 
@@ -1521,7 +1521,7 @@ YQPkgSelector::installSubPkgs( const QString & suffix )
                 case S_Taboo:
                 case S_Del:
                     // Don't install the subpackage
-                    logInfo() << "Ignoring unwanted subpackage " << subPkgName << endl;
+                    logInfo() << "Ignoring unwanted subpackage " << subPkgName << Qt::endl;
                     break;
 
                 case S_AutoInstall:
@@ -1533,7 +1533,7 @@ YQPkgSelector::installSubPkgs( const QString & suffix )
                     if ( ! subPkg->installedObj() )
                     {
                         subPkg->setStatus( S_Install );
-                        logInfo() << "Installing subpackage " << subPkgName << endl;
+                        logInfo() << "Installing subpackage " << subPkgName << Qt::endl;
                     }
                     break;
 
@@ -1546,12 +1546,12 @@ YQPkgSelector::installSubPkgs( const QString & suffix )
                     if ( ! subPkg->installedObj() )
                     {
                         subPkg->setStatus( S_Install );
-                        logInfo() << "Installing subpackage " << subPkgName << endl;
+                        logInfo() << "Installing subpackage " << subPkgName << Qt::endl;
                     }
                     else
                     {
                         subPkg->setStatus( S_Update );
-                        logInfo() << "Updating subpackage " << subPkgName << endl;
+                        logInfo() << "Updating subpackage " << subPkgName << Qt::endl;
                     }
                     break;
 
@@ -1580,18 +1580,18 @@ YQPkgSelector::installSubPkgs( const QString & suffix )
 bool
 YQPkgSelector::anyRetractedPkgInstalled()
 {
-    // logVerbose() << "Checking for retracted installed packages..." << endl;
+    // logVerbose() << "Checking for retracted installed packages..." << Qt::endl;
 
     for ( ZyppPoolIterator it = zyppPkgBegin(); it != zyppPkgEnd(); ++it )
     {
         if ( (*it)->hasRetractedInstalled() )
         {
-            logInfo() << "Found a retracted installed package" << endl;
+            logInfo() << "Found a retracted installed package" << Qt::endl;
             return true;
         }
     }
 
-    logDebug() << "No retracted packages installed." << endl;
+    logDebug() << "No retracted packages installed." << Qt::endl;
 
     return false;
 }
